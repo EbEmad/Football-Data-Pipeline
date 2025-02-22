@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: Football
+    ports:
+      - "5432:5432"
+    networks:
+      - ETL-networks
+    healthcheck:
+      test: ['CMD-SHELL','pg_ready -U root']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  ETL-networks:
