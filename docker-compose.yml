@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   postgres:
     image: postgres:latest
@@ -17,6 +16,38 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  spark:
+    image: bitnami/spark:latest
+    container_name: spark
+    ports:
+      - "7077:7077"
+    environment:
+      - SPARK_HOME=master
+      - SPARK_RPC_PORT_NUMBER=7077
+    volumes:
+      - ./spark/app:/opt/airflow/spark/app
+      - ./spark/resources:/opt/airflow/spark/resources
+      - ./JDBC_Driver:/Drivers/SQL_Sever/jdbc
+    networks:
+      - ETL-networks
+
+  jupyter:
+    image: jupyter/pyspark-notebook
+    container_name: jupyter
+    depends_on:
+      - spark
+    ports:
+      - "8885:8888"
+    environment:
+      SPARK_NASTER_URL: spark://spark:7077
+    networks:
+      - ETL-networks
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks/
+      - ./data:/home/jovyan/work/data/
+      - ./JDBC_Driver:/Drivers/SQL_Sever/jdbc
+
 
 networks:
   ETL-networks:
+    driver: bridge
