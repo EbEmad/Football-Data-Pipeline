@@ -1,0 +1,32 @@
+[2025-03-28T20:46:03.705+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_arsenalfc.extract scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2025-03-28T20:46:03.725+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_arsenalfc.extract scheduled__2024-05-09T00:00:00+00:00 [queued]>
+[2025-03-28T20:46:03.726+0000] {taskinstance.py:2193} INFO - Starting attempt 2 of 2
+[2025-03-28T20:46:04.052+0000] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): extract> on 2024-05-09 00:00:00+00:00
+[2025-03-28T20:46:04.102+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_arsenalfc', 'extract', 'scheduled__2024-05-09T00:00:00+00:00', '--job-id', '123', '--raw', '--subdir', 'DAGS_FOLDER/ArsenalDag.py', '--cfg-path', '/tmp/tmpo4cuozuv']
+[2025-03-28T20:46:04.113+0000] {standard_task_runner.py:88} INFO - Job 123: Subtask extract
+[2025-03-28T20:46:04.091+0000] {standard_task_runner.py:60} INFO - Started process 6702 to run task
+[2025-03-28T20:46:04.178+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-28T20:46:04.309+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_arsenalfc.extract scheduled__2024-05-09T00:00:00+00:00 [running]> on host d87fcbd51e2e
+[2025-03-28T20:46:04.534+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_arsenalfc' AIRFLOW_CTX_TASK_ID='extract' AIRFLOW_CTX_EXECUTION_DATE='2024-05-09T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-05-09T00:00:00+00:00'
+[2025-03-28T20:46:04.538+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-03-28T20:46:04.539+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'spark-submit --jars /Drivers/SQL_Sever/jdbc/postgresql-42.7.3.jar /opt/spark/app/Extract.py']
+[2025-03-28T20:46:04.596+0000] {subprocess.py:86} INFO - Output:
+[2025-03-28T20:46:04.772+0000] {subprocess.py:93} INFO - /home/***/.local/lib/python3.8/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2025-03-28T20:46:11.429+0000] {subprocess.py:93} INFO - 25/03/28 20:46:11 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-03-28T20:46:12.418+0000] {subprocess.py:93} INFO - python3: can't open file '/opt/spark/app/Extract.py': [Errno 2] No such file or directory
+[2025-03-28T20:46:12.456+0000] {subprocess.py:93} INFO - 25/03/28 20:46:12 INFO ShutdownHookManager: Shutdown hook called
+[2025-03-28T20:46:12.463+0000] {subprocess.py:93} INFO - 25/03/28 20:46:12 INFO ShutdownHookManager: Deleting directory /tmp/spark-5410cac5-9c05-45ee-a131-a483576deaf6
+[2025-03-28T20:46:12.534+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-03-28T20:46:12.547+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-03-28T20:46:12.550+0000] {taskinstance.py:1149} INFO - Marking task as FAILED. dag_id=etl_arsenalfc, task_id=extract, execution_date=20240509T000000, start_date=20250328T204603, end_date=20250328T204612
+[2025-03-28T20:46:12.565+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 123 for task extract (Bash command failed. The command returned a non-zero exit code 2.; 6702)
+[2025-03-28T20:46:12.603+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-03-28T20:46:12.619+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

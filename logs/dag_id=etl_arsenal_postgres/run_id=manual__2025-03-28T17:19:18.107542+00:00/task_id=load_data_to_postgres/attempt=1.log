@@ -1,0 +1,39 @@
+[2025-03-28T17:19:19.243+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_arsenal_postgres.load_data_to_postgres manual__2025-03-28T17:19:18.107542+00:00 [queued]>
+[2025-03-28T17:19:19.256+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_arsenal_postgres.load_data_to_postgres manual__2025-03-28T17:19:18.107542+00:00 [queued]>
+[2025-03-28T17:19:19.257+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2025-03-28T17:19:19.283+0000] {taskinstance.py:2217} INFO - Executing <Task(SparkSubmitOperator): load_data_to_postgres> on 2025-03-28 17:19:18.107542+00:00
+[2025-03-28T17:19:19.291+0000] {standard_task_runner.py:60} INFO - Started process 1196 to run task
+[2025-03-28T17:19:19.295+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_arsenal_postgres', 'load_data_to_postgres', 'manual__2025-03-28T17:19:18.107542+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/ArsenalDag.py', '--cfg-path', '/tmp/tmptkxrv_qo']
+[2025-03-28T17:19:19.299+0000] {standard_task_runner.py:88} INFO - Job 20: Subtask load_data_to_postgres
+[2025-03-28T17:19:19.319+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-28T17:19:19.367+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_arsenal_postgres.load_data_to_postgres manual__2025-03-28T17:19:18.107542+00:00 [running]> on host d87fcbd51e2e
+[2025-03-28T17:19:19.485+0000] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_arsenal_postgres' AIRFLOW_CTX_TASK_ID='load_data_to_postgres' AIRFLOW_CTX_EXECUTION_DATE='2025-03-28T17:19:18.107542+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-28T17:19:18.107542+00:00'
+[2025-03-28T17:19:19.498+0000] {spark_submit.py:204} INFO - Could not load connection string spark_default, defaulting to yarn
+[2025-03-28T17:19:19.500+0000] {spark_submit.py:335} INFO - Spark-Submit cmd: spark-submit --master yarn --jars /Drivers/SQL_Sever/jdbc/postgresql-42.7.3.jar --name arrow-spark /opt/***/spark/app/Extract.py --postgres_host postgres --postgres_port 5432 --postgres_db mydatabase --postgres_user postgres --postgres_password ******
+[2025-03-28T17:19:19.585+0000] {spark_submit.py:488} INFO - /home/***/.local/lib/python3.8/site-packages/pyspark/bin/load-spark-env.sh: line 68: ps: command not found
+[2025-03-28T17:19:21.177+0000] {spark_submit.py:488} INFO - Exception in thread "main" org.apache.spark.SparkException: When running with master 'yarn' either HADOOP_CONF_DIR or YARN_CONF_DIR must be set in the environment.
+[2025-03-28T17:19:21.177+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmitArguments.error(SparkSubmitArguments.scala:650)
+[2025-03-28T17:19:21.178+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateSubmitArguments(SparkSubmitArguments.scala:281)
+[2025-03-28T17:19:21.178+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmitArguments.validateArguments(SparkSubmitArguments.scala:237)
+[2025-03-28T17:19:21.179+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmitArguments.<init>(SparkSubmitArguments.scala:122)
+[2025-03-28T17:19:21.179+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2$$anon$3.<init>(SparkSubmit.scala:1108)
+[2025-03-28T17:19:21.179+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.parseArguments(SparkSubmit.scala:1108)
+[2025-03-28T17:19:21.179+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmit.doSubmit(SparkSubmit.scala:86)
+[2025-03-28T17:19:21.180+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmit$$anon$2.doSubmit(SparkSubmit.scala:1125)
+[2025-03-28T17:19:21.180+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:1134)
+[2025-03-28T17:19:21.180+0000] {spark_submit.py:488} INFO - at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)
+[2025-03-28T17:19:21.227+0000] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/apache/spark/operators/spark_submit.py", line 157, in execute
+    self._hook.submit(self._application)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/apache/spark/hooks/spark_submit.py", line 419, in submit
+    raise AirflowException(
+airflow.exceptions.AirflowException: Cannot execute: spark-submit --master yarn --jars /Drivers/SQL_Sever/jdbc/postgresql-42.7.3.jar --name arrow-spark /opt/***/spark/app/Extract.py --postgres_host postgres --postgres_port 5432 --postgres_db mydatabase --postgres_user postgres --postgres_password ******. Error code is: 1.
+[2025-03-28T17:19:21.233+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=etl_arsenal_postgres, task_id=load_data_to_postgres, execution_date=20250328T171918, start_date=20250328T171919, end_date=20250328T171921
+[2025-03-28T17:19:21.252+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 20 for task load_data_to_postgres (Cannot execute: spark-submit --master yarn --jars /Drivers/SQL_Sever/jdbc/postgresql-42.7.3.jar --name arrow-spark /opt/***/spark/app/Extract.py --postgres_host postgres --postgres_port 5432 --postgres_db mydatabase --postgres_user postgres --postgres_password ******. Error code is: 1.; 1196)
+[2025-03-28T17:19:21.273+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-03-28T17:19:21.298+0000] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

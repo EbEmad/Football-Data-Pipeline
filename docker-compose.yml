@@ -11,7 +11,7 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: 10
-    environment:
+  # Remove the duplicate environment: line
 
  
   volumes:
@@ -79,14 +79,18 @@ services:
   spark:
     image: bitnami/spark:latest
     ports:
-      - "7077:7077"  # Spark Web UI
+      - "7077:7077"
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_PORT_NUMBER=7077
     volumes:
-      - ./spark/app:/opt/spark/app 
+      - ./dags:/opt/airflow/dags
+      - ./logs:/opt/airflow/logs
+      - ./spark/app:/opt/bitnami/spark/app
+      - ./spark/resources:/opt/airflow/spark/resources
       - ./JDBC_Driver:/Drivers/SQL_Sever/jdbc
-
+      - ./data:/opt/airflow/data
+      
     networks:
       - my_network
 
