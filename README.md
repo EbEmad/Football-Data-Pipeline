@@ -79,3 +79,4 @@ The relationships between these tables are designed to provide a comprehensive v
 ## Serving Layer Analysis with PowerBI and Jupyter Notebooks
 
 The final steps in our data pipeline are the analysis and visualization of the transformed data. PowerBI serves as our primary serving layer, creating a suite of dashboards that provide deep insights into performance metrics. Additionally, we utilize Jupyter Notebooks for ad-hoc analysis and aggregations, leveraging PySpark for its powerful data processing capabilities. This combination ensures that stakeholders have access to both standardized reports and the flexibility for custom data exploration.
+hema
