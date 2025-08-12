@@ -1,8 +1,32 @@
-on: push
+name: Test Docker Compose
+
+on:
+  push:
+    branches: [master,main]
+
+  pull_request:
+    branches: [main]
 
 jobs:
-  first-job:
+  docker-compose-test:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo "Hello, world!"
-      - run: echo "This is my first job"
+      - name: Cheeckout Repository
+        uses: actions/checkout@v3
+      - name: Validate docker compose file
+        run: docker compose -f docker-compose.yml config
+
+      - name: Start containers
+        run: |
+          docker compose -f docker-compose.yml up -d
+          echo "Waiting for services to start..."
+          sleep 30
+
+      - name: Check running containers
+        run: docker ps
+
+      - name: Stop containers
+        if: always()
+        run: |
+          docker compose -f docker-compose.yml down
