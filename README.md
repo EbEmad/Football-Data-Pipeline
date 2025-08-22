@@ -2,7 +2,7 @@
 
 This project encompasses a comprehensive data engineering pipeline designed to process and analyze data related to Arsenal Football Club's players, goalkeepers, and matches from 2017 to 2023. The processed data provides insights into player performances, match outcomes, and goalkeeper statistics.
 
-![Architecture Diagram](/Architecture.jpg)
+![Architecture Diagram](/images/Architecture.jpg)
 
 ## Tech Stack & Tools
 
@@ -74,7 +74,7 @@ The Galaxy Schema, also known as a Fact Constellation Schema, is employed in our
 
 The relationships between these tables are designed to provide a comprehensive view of the club's performance, offering insights into individual and team progress over time. This schema is the backbone of our data-driven decision-making processes and is crucial for generating the analytical reports presented in PowerBI.
 
-![Galaxy Schema](/GalaxySchema.png)
+![Galaxy Schema](/images/GalaxySchema.png)
 
 ## Serving Layer Analysis with PowerBI and Jupyter Notebooks
 
