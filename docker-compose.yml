@@ -15,8 +15,8 @@ x-airflow-common:
 
  
   volumes:
-    - ./dags:/opt/airflow/dags
-    - ./logs:/opt/airflow/logs
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
     - ./spark/app:/opt/airflow/spark/app
     - ./spark/resources:/opt/airflow/spark/resources
     - ./JDBC_Driver:/Drivers/SQL_Sever/jdbc
